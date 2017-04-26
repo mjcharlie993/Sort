@@ -97,6 +97,8 @@ swap:
 
 */
 
+// 在最好的情况下，快速排序的基准元素正好是整个数组的中位数，可以近似为二分，那么最好情况下递归层数为nlogn
+
 // C++ QuickSort
 #include <iostream>
 int RandomInRange(int start, int end) {
@@ -140,6 +142,27 @@ void QuickSort(int data[], int length, int start, int end) {
 		QuickSort(data, length, start, index - 1);
 	else
 		QuickSort(data, length, index + 1, end);
+}
+
+void QuickSort2(int data[], int start, int end) {
+	if (start >= end)
+		return;
+	int left = start, right = end;
+	int pivot = data[start];
+	while (left <= right) {
+		while (left <= right && data[left] < pivot) {
+			left++;
+		}
+		while (left <= right && data[right] >= pivot) {
+			right--;
+		}
+		if (left > right)
+			break;
+		Swap(&data[left], &data[right]);
+	}
+	Swap(&data[start], &data[right]);
+	QuickSort2(data, start, right - 1);
+	QuickSort2(data, right + 1, end);
 }
 
 int main() {
