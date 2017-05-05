@@ -4,7 +4,7 @@
 
 /********************************************************************
  * Counting Sort
- * &prama
+ * @param
  * data: 要排序的数组
  * size: 数组元素的个数
  * k   : 数组中元素数组最大值 + 1
@@ -37,5 +37,4 @@ int CountingSort(int *data, int size, int k) {
     free(temp);
 
     return 0;
-     
 }
